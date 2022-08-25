@@ -896,12 +896,12 @@ impl ::core::default::Default for D2D1_BITMAP_PROPERTIES {
 #[repr(C)]
 #[doc = "*Required features: `\"Win32_Graphics_Direct2D\"`, `\"Win32_Graphics_Direct2D_Common\"`, `\"Win32_Graphics_Dxgi_Common\"`*"]
 #[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common"))]
-pub struct D2D1_BITMAP_PROPERTIES1 {
+pub struct D2D1_BITMAP_PROPERTIES1<'a> {
     pub pixelFormat: Common::D2D1_PIXEL_FORMAT,
     pub dpiX: f32,
     pub dpiY: f32,
     pub bitmapOptions: D2D1_BITMAP_OPTIONS,
-    pub colorContext: ::core::option::Option<ID2D1ColorContext>,
+    pub colorContext: ::windows::core::Borrowed<'a, ID2D1ColorContext>,
 }
 #[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common"))]
 impl ::core::clone::Clone for D2D1_BITMAP_PROPERTIES1 {
@@ -2814,7 +2814,7 @@ impl ::core::fmt::Debug for D2D1_EDGEDETECTION_PROP {
 #[doc = "*Required features: `\"Win32_Graphics_Direct2D\"`, `\"Win32_Graphics_Direct2D_Common\"`*"]
 #[cfg(feature = "Win32_Graphics_Direct2D_Common")]
 pub struct D2D1_EFFECT_INPUT_DESCRIPTION {
-    pub effect: ::core::option::Option<ID2D1Effect>,
+    pub effect: ::windows::core::Borrowed<'a, ID2D1Effect>,
     pub inputIndex: u32,
     pub inputRectangle: Common::D2D_RECT_F,
 }
@@ -4447,11 +4447,11 @@ impl ::core::ops::Not for D2D1_LAYER_OPTIONS1 {
 #[cfg(all(feature = "Foundation_Numerics", feature = "Win32_Graphics_Direct2D_Common"))]
 pub struct D2D1_LAYER_PARAMETERS {
     pub contentBounds: Common::D2D_RECT_F,
-    pub geometricMask: ::core::option::Option<ID2D1Geometry>,
+    pub geometricMask: ::windows::core::Borrowed<'a, ID2D1Geometry>,
     pub maskAntialiasMode: D2D1_ANTIALIAS_MODE,
     pub maskTransform: super::super::super::Foundation::Numerics::Matrix3x2,
     pub opacity: f32,
-    pub opacityBrush: ::core::option::Option<ID2D1Brush>,
+    pub opacityBrush: ::windows::core::Borrowed<'a, ID2D1Brush>,
     pub layerOptions: D2D1_LAYER_OPTIONS,
 }
 #[cfg(all(feature = "Foundation_Numerics", feature = "Win32_Graphics_Direct2D_Common"))]
@@ -4497,11 +4497,11 @@ impl ::core::default::Default for D2D1_LAYER_PARAMETERS {
 #[cfg(all(feature = "Foundation_Numerics", feature = "Win32_Graphics_Direct2D_Common"))]
 pub struct D2D1_LAYER_PARAMETERS1 {
     pub contentBounds: Common::D2D_RECT_F,
-    pub geometricMask: ::core::option::Option<ID2D1Geometry>,
+    pub geometricMask: ::windows::core::Borrowed<'a, ID2D1Geometry>,
     pub maskAntialiasMode: D2D1_ANTIALIAS_MODE,
     pub maskTransform: super::super::super::Foundation::Numerics::Matrix3x2,
     pub opacity: f32,
-    pub opacityBrush: ::core::option::Option<ID2D1Brush>,
+    pub opacityBrush: ::windows::core::Borrowed<'a, ID2D1Brush>,
     pub layerOptions: D2D1_LAYER_OPTIONS1,
 }
 #[cfg(all(feature = "Foundation_Numerics", feature = "Win32_Graphics_Direct2D_Common"))]

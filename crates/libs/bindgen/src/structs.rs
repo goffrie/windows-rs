@@ -47,16 +47,22 @@ fn gen_struct_with_name(gen: &Gen, def: TypeDef, struct_name: &str, cfg: &Cfg) -
         quote! { #[repr(C)] }
     };
 
+    let winrt = gen.reader.type_def_flags(def).winrt();
+
     let fields = gen.reader.type_def_fields(def).map(|f| {
         let name = to_ident(gen.reader.field_name(f));
         let ty = gen.reader.field_type(f, Some(def));
-        let ty = gen.type_default_name(&ty);
 
         if gen.reader.field_flags(f).literal() {
             quote! {}
         } else if !gen.sys && flags.explicit_layout() && !gen.reader.field_is_blittable(f, def) {
-            quote! { pub #name: ::core::mem::ManuallyDrop<#ty>, }
+            let ty = gen.type_default_name(&ty);
+            quote! { pub #name: ::core::mem::ManuallyDrop<#ty>, } // <-- TODO: can this use Borrowed?
+        } else if !winrt && !gen.reader.field_is_blittable(f, def) {
+            let ty = gen.type_name(&ty);
+            quote! { pub #name: ::windows::core::Borrowed<'a, #ty>, }
         } else {
+            let ty = gen.type_default_name(&ty);
             quote! { pub #name: #ty, }
         }
     });
