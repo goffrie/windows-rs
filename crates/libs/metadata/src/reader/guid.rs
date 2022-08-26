@@ -6,26 +6,55 @@ use super::*;
 pub struct GUID(pub u32, pub u16, pub u16, pub u8, pub u8, pub u8, pub u8, pub u8, pub u8, pub u8, pub u8);
 
 impl GUID {
-    pub fn from_args(args: &[(String, Value)]) -> Self {
-        fn unwrap_u32(value: &Value) -> u32 {
-            match value {
-                Value::U32(value) => *value,
-                _ => unimplemented!(),
-            }
+    pub fn from_args(args: &[(String, Value)]) -> Option<Self> {
+        if args.len() < 11 {
+            return None;
         }
-        fn unwrap_u16(value: &Value) -> u16 {
-            match value {
-                Value::U16(value) => *value,
-                _ => unimplemented!(),
-            }
-        }
-        fn unwrap_u8(value: &Value) -> u8 {
-            match value {
-                Value::U8(value) => *value,
-                _ => unimplemented!(),
-            }
-        }
-        Self(unwrap_u32(&args[0].1), unwrap_u16(&args[1].1), unwrap_u16(&args[2].1), unwrap_u8(&args[3].1), unwrap_u8(&args[4].1), unwrap_u8(&args[5].1), unwrap_u8(&args[6].1), unwrap_u8(&args[7].1), unwrap_u8(&args[8].1), unwrap_u8(&args[9].1), unwrap_u8(&args[10].1))
+        let a = match &args[0].1 {
+            Value::U32(value) => *value,
+           _ => return None,
+        };
+        let b = match &args[1].1 {
+            Value::U16(value) => *value,
+           _ => return None,
+        };
+        let c = match &args[2].1 {
+            Value::U16(value) => *value,
+           _ => return None,
+        };
+        let d = match &args[3].1 {
+            Value::U8(value) => *value,
+           _ => return None,
+        };
+        let e = match &args[4].1 {
+            Value::U8(value) => *value,
+           _ => return None,
+        };
+        let f = match &args[5].1 {
+            Value::U8(value) => *value,
+           _ => return None,
+        };
+        let g = match &args[6].1 {
+            Value::U8(value) => *value,
+           _ => return None,
+        };
+        let h = match &args[7].1 {
+            Value::U8(value) => *value,
+           _ => return None,
+        };
+        let i = match &args[8].1 {
+            Value::U8(value) => *value,
+           _ => return None,
+        };
+        let j = match &args[9].1 {
+            Value::U8(value) => *value,
+           _ => return None,
+        };
+        let k = match &args[10].1 {
+            Value::U8(value) => *value,
+           _ => return None,
+        };
+        Some(Self(a,b,c,d,e,f,g,h,i,j,k))
     }
 }
 

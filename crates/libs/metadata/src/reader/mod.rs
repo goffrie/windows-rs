@@ -386,7 +386,7 @@ impl<'a> Reader<'a> {
     pub fn field_guid(&self, row: Field) -> Option<GUID> {
         for attribute in self.field_attributes(row) {
             if self.attribute_name(attribute) == "GuidAttribute" {
-                return Some(GUID::from_args(&self.attribute_args(attribute)));
+                return GUID::from_args(&self.attribute_args(attribute));
             }
         }
         None
@@ -884,7 +884,7 @@ impl<'a> Reader<'a> {
     pub fn type_def_guid(&self, row: TypeDef) -> Option<GUID> {
         for attribute in self.type_def_attributes(row) {
             if self.attribute_name(attribute) == "GuidAttribute" {
-                return Some(GUID::from_args(&self.attribute_args(attribute)));
+                return GUID::from_args(&self.attribute_args(attribute));
             }
         }
         None
